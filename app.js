@@ -76,7 +76,8 @@ var app = angular
                 ];
 
                 $scope.currentWord = {};
-
+                $scope.allAnswerArray = [];
+                $scope.usedAnswerArray = [];
                 $scope.vocabArray = [];
 
 
@@ -95,7 +96,41 @@ var app = angular
                     $scope.allAnswerArray.push(model[i].definition);
                 };
 
+                $scope.vaLength = $scope.vocabArray.length;
 
+                $scope.getWord = function() {
+                    var arrayLen = $scope.vocabArray.length;
+                    var randomIndex = Math.floor(Math.random() * arrayLen);
+                    var newWord = $scope.vocabArray[randomIndex];
+                    $scope.vocabArray.splice(randomIndex, 1);
+                    $scope.vaLength = $scope.vocabArray.length;
+                    return newWord;
+                };
+
+                $scope.currentWord = new Word($scope.getWord());
+
+                $scope.nextWord = function() {
+                    $scope.currentWord = new Word($scope.getWord());
+                };
+
+                $scope.getAnswers = function() {
+                    $scope.usedAnswerArray = [];
+                    var correctAnswer = $scope.currentWord.def;
+                    $scope.usedAnswerArray.push(correctAnswer);
+
+                    for(i = 0; i < 4; i++) {
+                        var randomInt = Math.floor(Math.random() * $scope.allAnswerArray.length);
+                        //logic to make sure there are no duplicate answers
+                        if($scope.usedAnswerArray.indexOf($scope.allAnswerArray[randomInt]) == -1 && $scope.usedAnswerArray.indexOf($scope.allAnswerArray[randomInt]) != correctAnswer) {
+                            $scope.usedAnswerArray.push($scope.allAnswerArray[randomInt]);
+                        } else {
+                            i -= 1;
+                        };
+                    }
+                    $scope.usedAnswerArray.shift();
+                    var answerIndex = Math.floor(Math.random() * 4);
+                    $scope.usedAnswerArray.splice(answerIndex, 0, correctAnswer);
+                };
 
 
         });

@@ -16,8 +16,15 @@
 
     </header>
     <div>
+        <button>Start</button>
         <p> {{ currentWord.word }} </p>
         <p> {{ currentWord.pos }} </p>
+        <ul ng-repeat="x in usedAnswerArray">
+          <li> {{x}} </li>
+        </ul>
+        <p> {{usedAnswerArray}} </p>
+        <button ng-click="nextWord()">Next</button>
+        <button ng-click="getAnswers()">Answers</button>
 
     </div>
   </body>
