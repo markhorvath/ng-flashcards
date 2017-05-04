@@ -6,26 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
+        <script src="service.js"></script>
 
   </head>
 
   <body ng-controller="mainController">
     <header>
-
+    GRE Flashcards
     </header>
-    <div>
-        <button>Start</button>
-        <p> {{ currentWord.word }} </p>
-        <p> {{ currentWord.pos }} </p>
-        <ul ng-repeat="x in usedAnswerArray">
-          <li> {{x}} </li>
-        </ul>
-        <p> {{usedAnswerArray}} </p>
-        <button ng-click="nextWord()">Next</button>
-        <button ng-click="getAnswers()">Answers</button>
-
+    <div class="container-fluid row">
+        <div class="col-lg-4"></div>
+        <button class="btn btn-primary btn-lg col-lg-4 center-block" ng-click="showCard = !showCard; nextWord()" ng-show="!showCard">Start</button>
+        <div class="col-lg-4"></div>
+        <div ng-show="showCard" id="flashcard">
+          <p> {{ currentWord.word }} </p>
+          <p id="pos"> {{ currentWord.pos }} </p>
+          <ul ng-repeat="x in currentAnswers">
+            <li> {{x}} </li>
+          </ul>
+          <p> {{usedAnswerArray}} </p>
+          <button ng-click="nextWord()">Next</button>
+        </div>
     </div>
   </body>
 </html>
