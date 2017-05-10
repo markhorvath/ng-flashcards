@@ -1613,5 +1613,23 @@ var app = angular
                     $scope.nextWord = service.nextWord();
                 };
 
+                $scope.checkAnswer = function(event) {
+                    var clicked = event.currentTarget.innerHTML.slice(1,-1);
+                    if(clicked == $scope.currentWord.def) {
+                        $scope.nextWord();
+                    }
+                }
+
+                $scope.select = function(item) {
+                    this.selected = (this.selected === item ? null : item);
+                };
+
+                $scope.isWrong = function(item) {
+                    return this.selected === item;
+                };
+
+                $scope.isCorrect = function(item) {
+                    return this.selected === item;
+                }
 
         });

@@ -12,3 +12,20 @@ header {
     border: 1px solid black;
     text-align: center;
 }
+
+.btn-primary {
+    margin-top: 10%;
+}
+
+.wrong {
+    text-decoration: line-through red;
+}
+
+.correct {
+    color: green;
+}
+
+#word {
+    font-size: 32px;
+    font-style: bold;
+}

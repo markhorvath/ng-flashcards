@@ -22,10 +22,10 @@
         <button class="btn btn-primary btn-lg col-lg-4 center-block" ng-click="showCard = !showCard; nextWord()" ng-show="!showCard">Start</button>
         <div class="col-lg-4"></div>
         <div ng-show="showCard" id="flashcard">
-          <p> {{ currentWord.word }} </p>
+          <p id="word"> {{ currentWord.word }} </p>
           <p id="pos"> {{ currentWord.pos }} </p>
           <ul ng-repeat="x in currentAnswers">
-            <li> {{x}} </li>
+            <li ng-click="checkAnswer($event); select(x)" ng-class="{wrong: isWrong(x)}"> {{x}} </li>
           </ul>
           <p> {{usedAnswerArray}} </p>
           <button ng-click="nextWord()">Next</button>
